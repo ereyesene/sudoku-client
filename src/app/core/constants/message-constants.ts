@@ -1,0 +1,16 @@
+export const MessageConstants = {
+    GET_SUCCESS : 'Nuevo sudoku creado',
+    GET_FAILED : 'Algo salio mal',
+    SUDOKU_NOTFOUND : 'Sudoku no encontrado',
+    SOLVE_SUCCESS : 'Solucionado correctamente',
+    SOLVE_FAILED : 'No se puede solucionar',
+    CHECK_INVALID : 'Numeros invalids',
+    CHECK_VALID : 'Todo Correcto',
+    CHECK_FAILED : 'Error al validar sudoku',
+    ERROR_500 : 'Error 500: Internal Server Error',
+    ERROR_404 : 'Error 404: Not Found',
+    ERROR : 'Error',
+    ERROR_DEFAULT : 'Error: Algo salio mal',
+    EPMTY_JSON : 'Ingrese informacion para validar',
+    JSON_NO_VALID : 'Los datos ingresados no son validos',
+};

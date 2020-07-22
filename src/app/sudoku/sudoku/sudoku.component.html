@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="at-sudoku">
+        <div class="at-menu">
+            <div class="row">
+                <div class="col-6 col-md-2">
+                    <button class="btn btn-primary" (click)="checkSudoku()" ngbTooltip="Validar solucion"
+                        placement="top">
+                        Validar
+                    </button>
+                </div>
+                <div class="col-6 col-md-3">
+                    <button class="btn btn-primary" (click)="resetSudoku()" ngbTooltip="Borra los numeros ingresados"
+                        placement="top">
+                        Resetear
+                    </button>
+                </div>
+                <div class="col-6 col-md-3">
+                    <button class="btn btn-primary" (click)="solveSudoku()" ngbTooltip="Obten la solucion" placement="top">
+                        Resolver
+                    </button>
+                </div>
+                <div class="col-6 col-md-2">
+                    <button class="btn btn-primary" (click)="getSudoku()" ngbTooltip="Crear un nuevo sudoku" placement="top">
+                        Nuevo
+                    </button>
+                </div>
+
+                <div class="col-6 col-md-2">
+                    <button class="btn btn-info" (click)="saveResults()" ngbTooltip="Guardar">
+                        Guardar
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <textarea placeholder="Ingrese aqui su json" [(ngModel)]='uploadJson' rows="15" ></textarea>
+                <button class="btn btn-primary" (click)="uploadSudoku()" ngbTooltip="Cargar sudoku">
+                    Cargar Sudoku
+                </button>
+            </div>
+            <div class="col-6 col-md-6">
+                <div class="at-board">
+                    <form [formGroup]="sudokuFormGroup">
+                        <div formArrayName="cells">
+                            <div class="at-row" *ngFor="let row of puzzle; let i = index">
+                                <span class="at-column" *ngFor="let field of row; let j = index">
+                                    <input type="number" 
+                                            class="at-cell" 
+                                            [ngClass]="{'at-disabled': field != null, 'at-error': cells.controls[(i*row.length)+j].errors}" 
+                                            name="{{(i*row.length)+j}}" 
+                                            value="{{field}}"
+                                            formControlName="{{(i*row.length)+j}}" 
+                                            maxlength="1" 
+                                            (keypress)="onKeyPress($event)"
+                                            (paste)="$event.preventDefault()" 
+                                            tabindex="-1" />
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="data">
+                    <ul class="list-instyled">
+                        <li *ngFor="let todo of sudokuList">{{todo.createdAt | date:"yyyy-MM-dd HH:mm"}}
+                            <i (click)="viewSolution(todo.solution)" class="material-icons">Ver</i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</div>
